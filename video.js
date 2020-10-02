@@ -14,7 +14,6 @@ const multer = require('multer');
 const app = express()
 const port = process.argv[2];
 
-//app.use(fileUpload());
 app.use(require('express-status-monitor')());
 
 var sendemail = 'daniel.bermudez@uptc.edu.co';
@@ -30,6 +29,10 @@ app.use(multer({
 	storage,
 	dest:'uploads'	
 }).single('file'));
+
+app.get('/hola', (req, res)=>{
+    res.send('Hola')
+})
 
 app.post('/upload', (req, res)=>{
     var email = req.body.email;
@@ -131,7 +134,7 @@ async function quickSort(items, left, right) {
 
 async function top() {
     console.log('se inicio la creacion del pdf')
-    
+
     var aux = [];
     var orderArray = await quickSort(colors, 0, colors.length - 1);
     for (let index = orderArray.length - 1; index > (orderArray.length - 101); index--) {
